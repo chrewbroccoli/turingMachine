@@ -4,7 +4,7 @@ import java.util.*;
 
 public class TuringMachine {
         public static void main(String[] args) {
-            //Geben Sie hier den Input für das Tape der Turing Maschine ein:
+            //todo: Geben Sie hier den Input für das Tape der Turing Maschine ein:
             TuringMachine turingMachine = new TuringMachine("1011");
             turingMachine.doCalculations();
         }
@@ -66,7 +66,7 @@ public class TuringMachine {
         }
 
 
-        // hier können die States und die transitionfunctions erstellt werden
+        // todo: hier können die States und die transitionfunctions erstellt werden
         private List<State> createStates (){
             List<State> states = new ArrayList<>();
             //create state 0
