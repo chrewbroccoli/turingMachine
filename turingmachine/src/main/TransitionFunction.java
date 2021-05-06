@@ -1,4 +1,6 @@
-    public class TransitionFunction {
+package main;
+
+public class TransitionFunction {
         private Symbol currentSymbol;
         private Symbol newSymbol;
         private int newStateIndex;

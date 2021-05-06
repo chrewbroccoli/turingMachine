@@ -1,3 +1,5 @@
+package main;
+
 public enum Symbol {
     ONE("1"),
     ZERO("0"),

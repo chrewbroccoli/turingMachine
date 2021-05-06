@@ -1,3 +1,5 @@
+package main;
+
 import java.util.*;
 
 public class TuringMachine {
@@ -43,7 +45,7 @@ public class TuringMachine {
                 print();
                 for (TransitionFunction transitionFunction: states.get(currentState).getTransitionFunctions()){
                     if (tape.get(currentPosition)==transitionFunction.getCurrentSymbol()){
-                        System.out.println("Move number: "+counter++);
+                        System.out.println("main.Move number: "+counter++);
                         System.out.println("current state: "+currentState);
                         System.out.println(transitionFunction.toString());
                         tape.put(currentPosition, transitionFunction.getNewSymbol());
