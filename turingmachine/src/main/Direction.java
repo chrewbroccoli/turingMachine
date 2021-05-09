@@ -1,11 +1,11 @@
 package main;
 
-public enum Move {
+public enum Direction {
     RIGHT (1),
     LEFT(-1),
     STAY(0);
 
-    Move(int value){
+    Direction(int value){
         this.value = value;
     }
     private final int value;

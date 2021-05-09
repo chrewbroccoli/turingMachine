@@ -1,35 +1,35 @@
 package main;
 
 public class TransitionFunction {
-        private Symbol currentSymbol;
-        private Symbol newSymbol;
+        private Symbol readSymbol;
+        private Symbol writeSymbol;
         private int newStateIndex;
-        private Move nextMove;
+        private Direction nextDirection;
 
-        TransitionFunction(Symbol currentSymbol, Symbol newSymbol, int newStateIndex, Move nextMove){
-            this.currentSymbol = currentSymbol;
-            this.newSymbol =newSymbol;
+        TransitionFunction(Symbol currentSymbol, Symbol newSymbol, int newStateIndex, Direction nextDirection){
+            this.readSymbol = currentSymbol;
+            this.writeSymbol =newSymbol;
             this.newStateIndex =newStateIndex;
-            this.nextMove=nextMove;
+            this.nextDirection = nextDirection;
         }
 
-        public Symbol getCurrentSymbol() {
-            return currentSymbol;
+        public Symbol getReadSymbol() {
+            return readSymbol;
         }
 
-        public Symbol getNewSymbol() {
-            return newSymbol;
+        public Symbol getWriteSymbol() {
+            return writeSymbol;
         }
         public int getNewStateIndex() {
             return newStateIndex;
         }
-        public Move getNextMove() {
-            return nextMove;
+        public Direction getNextMove() {
+            return nextDirection;
         }
 
         @Override
         public String toString(){
-            return (currentSymbol.getValue()+"|"+newSymbol.getValue()+"  "+ nextMove.toString()+ " next state: "+ newStateIndex);
+            return (readSymbol.getValue()+"|"+ writeSymbol.getValue()+"  "+ nextDirection.toString()+ " next state: "+ newStateIndex);
         }
     }
 
