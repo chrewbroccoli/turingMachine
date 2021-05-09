@@ -5,7 +5,7 @@ import java.util.*;
 public class TuringMachine {
         public static void main(String[] args) {
             //todo: Geben Sie hier den Input für das Tape der Turing Maschine ein:
-            TuringMachine turingMachine = new TuringMachine("1011");
+            TuringMachine turingMachine = new TuringMachine("111");
             turingMachine.doCalculations();
         }
 
@@ -42,10 +42,11 @@ public class TuringMachine {
             do {
                 checkCurrentPosition(currentPosition);
                 doesWork=false;
-                print();
+
                 for (TransitionFunction transitionFunction: states.get(currentState).getTransitionFunctions()){
                     if (tape.get(currentPosition)==transitionFunction.getCurrentSymbol()){
-                        System.out.println("main.Move number: "+counter++);
+                        print();
+                        System.out.println("Move number: "+counter++);
                         System.out.println("current state: "+currentState);
                         System.out.println(transitionFunction.toString());
                         tape.put(currentPosition, transitionFunction.getNewSymbol());
@@ -55,6 +56,7 @@ public class TuringMachine {
                     }
                 }
                 if (states.get(currentState).isAcceptableState()||!doesWork){
+                    print();
                     if (!doesWork){
                         System.err.println("invalid tape");
                     } else {
@@ -71,29 +73,46 @@ public class TuringMachine {
             List<State> states = new ArrayList<>();
             //create state 0
             List<TransitionFunction> transitionFunctionsState0 = new ArrayList<>();
-            transitionFunctionsState0.add(new TransitionFunction(Symbol.ONE,Symbol.ZERO,1,Move.RIGHT));
+            transitionFunctionsState0.add(new TransitionFunction(Symbol.ONE,Symbol.ONE,0,Move.RIGHT));
+            transitionFunctionsState0.add(new TransitionFunction(Symbol.BLANK,Symbol.ZERO,1,Move.STAY));
             State state0 = new State(transitionFunctionsState0, false, true);
 
             //create state 1
             List<TransitionFunction> transitionFunctionsState1 = new ArrayList<>();
-            transitionFunctionsState1.add(new TransitionFunction(Symbol.ZERO,Symbol.BLANK,2,Move.LEFT));
-            transitionFunctionsState1.add(new TransitionFunction(Symbol.ONE,Symbol.ONE,2,Move.STAY));
+            transitionFunctionsState1.add(new TransitionFunction(Symbol.ZERO,Symbol.ZERO,1,Move.LEFT));
+            transitionFunctionsState1.add(new TransitionFunction(Symbol.X,Symbol.X,1,Move.LEFT));
+            transitionFunctionsState1.add(new TransitionFunction(Symbol.ONE,Symbol.X,2,Move.RIGHT));
+            transitionFunctionsState1.add(new TransitionFunction(Symbol.BLANK,Symbol.BLANK,4,Move.RIGHT));
             State state1 = new State(transitionFunctionsState1, false, false);
 
             //create state 2
             List<TransitionFunction> transitionFunctionsState2 = new ArrayList<>();
-            transitionFunctionsState2.add(new TransitionFunction(Symbol.ZERO,Symbol.BLANK,2,Move.LEFT));
-            transitionFunctionsState2.add(new TransitionFunction(Symbol.BLANK,Symbol.BLANK,3,Move.STAY));
+            transitionFunctionsState2.add(new TransitionFunction(Symbol.ONE,Symbol.ONE,2,Move.RIGHT));
+            transitionFunctionsState2.add(new TransitionFunction(Symbol.ZERO,Symbol.ZERO,2,Move.RIGHT));
+            transitionFunctionsState2.add(new TransitionFunction(Symbol.X,Symbol.X,2,Move.RIGHT));
+            transitionFunctionsState2.add(new TransitionFunction(Symbol.BLANK,Symbol.ONE,3,Move.STAY));
             State state2 = new State(transitionFunctionsState2, false, false);
 
-            //create finalState
-            State state3 = new State(null, true,false);
+            //create state 3
+            List<TransitionFunction> transitionFunctionsState3 = new ArrayList<>();
+            transitionFunctionsState3.add(new TransitionFunction(Symbol.ONE,Symbol.ONE,3,Move.LEFT));
+            transitionFunctionsState3.add(new TransitionFunction(Symbol.ZERO,Symbol.ZERO,1,Move.LEFT));
+            State state3 = new State(transitionFunctionsState3, false, false);
+
+            //create state 4
+            List<TransitionFunction> transitionFunctionsState4 = new ArrayList<>();
+            transitionFunctionsState4.add(new TransitionFunction(Symbol.X,Symbol.ONE,4,Move.RIGHT));
+            transitionFunctionsState4.add(new TransitionFunction(Symbol.ZERO,Symbol.ONE,4,Move.STAY));
+            State state4 = new State(transitionFunctionsState4, false,false);
+
+            //create state 5
 
             //add states to list
             states.add(state0);
             states.add(state1);
             states.add(state2);
             states.add(state3);
+            states.add(state4);
             return states;
         }
 

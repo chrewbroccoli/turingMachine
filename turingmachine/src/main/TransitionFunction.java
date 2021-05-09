@@ -29,7 +29,7 @@ public class TransitionFunction {
 
         @Override
         public String toString(){
-            return (currentSymbol.toString()+"/"+newSymbol.toString()+"  "+ nextMove.toString()+ " next state: "+ newStateIndex);
+            return (currentSymbol.getValue()+"|"+newSymbol.getValue()+"  "+ nextMove.toString()+ " next state: "+ newStateIndex);
         }
     }
 
